@@ -56,7 +56,8 @@ cards.displayCard = function(entity) {
     'notableFor': '',
     'image': 'images/none.gif',
     'actionUrl': '',
-    'actionText': ''
+    'actionText': '',
+    'wines': [{'text': '', 'url': ''}]
   };
   if (entity.property['/common/topic/notable_for']) {
     cardContent['notableFor'] = entity.property['/common/topic/notable_for']
