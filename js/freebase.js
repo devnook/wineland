@@ -110,7 +110,7 @@ fbmap.getFreebaseLocations = function() {
   var latLng = fbmap.currentLatLng;
   // Create the Freebase API query.
   var loc = ' lon:' + latLng.lng() + ' lat:' + latLng.lat();
-  loc = '(all type:' + fbmap.category + ' (within radius:50000000ft' + loc + '))';
+  loc = '(all type:' + fbmap.category + ' (within radius:500000000ft' + loc + '))';
   var params = {
     filter: loc,
     output: '(' + fbmap.locString + ')',
@@ -181,7 +181,7 @@ fbmap.createMarkers = function(response) {
         var params = {
           filter: '/wine/wine_sub_region/wines'
         };
-        $.getJSON(fbmap.topicUrl + result.mid + '?filter=allproperties', cards.displayCard);
+        $.getJSON(fbmap.topicUrl + result.mid + '?filter=all', cards.displayCard);
       }
     });
   });
