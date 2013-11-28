@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple markers</title>
+    <link rel="stylesheet" type="text/css"
+        href="http://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://beebole.com/pure/wp-content/themes/BeeBole-pure/libs/pure.js"></script>
+    <script src="js/cards.js"></script>
+    <script src="js/freebase.js"></script>
+    <script src="js/ui.js"></script>
+  </head>
+  <body>
+
+    <cardwrap id="cardwrap">
+      <div class="card" style="display:none;">
+        <left>
+          <img class="image" src="" width="112" height="112">
+        </left>
+        <right>
+          <h1 class="name">
+          This is card title
+          </h1>
+          <h2 class="notableFor">Subtitle</h2>
+          <p class="description">Description</p>
+        </right>
+        <div class="section namedAfter optional">
+          Named after <a class="" href=""></a>
+        </div>
+        <div class="section wines">
+          <h2>Wines:</h2>
+          <ul>
+            <li class="wine"><a href=""></a></li>
+          </ul>
+        </div>
+        <a class="action" href="">Action text</a>
+      </div>
+    </cardwrap>
+
+    <div id="flash-wrapper"><div id="flash"></div></div>
+    <div id="map-canvas"></div>
+    <select id="category">
+      <option value="/wine/wine_sub_region">wine sub region</option>
+    </select>
+  </body>
+</html>

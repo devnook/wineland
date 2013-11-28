@@ -1,0 +1,115 @@
+/* Reset */
+
+
+html,body,a,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,input,tbody,tfoot,thead,tr,th,td,article,aside,figure,footer,header,hgroup,menu,nav,section,menu,time,mark,audio,video { margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;outline:0;background:transparent; }
+
+
+card, container, feedback, front, back, filters, logo, cardwrap, main, a.action, span.url, span.snippet, a.info { display: block; }
+left, right { display: inline-block; }
+
+/* Fonts */
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+
+/* Styles */
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 13px;
+  color: #878787;
+  background: #F5F5F5;
+}
+
+cardwrap {
+  width: 370px;
+  padding: 0.2em;
+  position: absolute;
+  right: 0;
+  z-index: 99;
+}
+
+@cardPadding : 10px;
+@cardWidth: 370px;
+@imgWidth: 112px;
+
+.card {
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  display: block;
+  margin: 1em;
+  padding: @cardPadding;
+
+  left, right {
+    display: inline-block;
+    vertical-align: top;
+    max-width: 60%;
+
+    img {
+      margin-bottom: -3px;
+      padding: -10px;
+      margin: -@cardPadding;
+      margin-bottom: -(@cardPadding + 4)
+    }
+
+    h1, p {
+      padding: @cardPadding/2;
+    }
+
+    p:first-child {
+      font-size: 1.4em;
+    }
+
+  }
+
+  right {
+    margin-left: @cardPadding;
+  }
+
+  h1 {
+    font-size: 24px;
+    color: #707070;
+    font-weight: 200;
+  }
+
+  .action {
+    border-top: 1px solid #DDDDDD;
+    display: block;
+    margin: 0 -10px -10px -10px;
+    padding: 10px;
+    font-family: "Roboto";
+    color: #33b5e5;
+    text-decoration: none;
+  }
+
+  .section {
+    border-top: 1px solid #DDDDDD;
+    display: block;
+    margin: 0 -10px;
+    padding: 10px;
+
+    a {
+      font-family: "Roboto";
+      color: #33b5e5;
+      text-decoration: none;
+    }
+  }
+
+  .image[src="images/none.gif"],
+  .action:empty {
+    display: none;
+  }
+
+  .optional {
+    display: none;
+  }
+
+  .optional[display="true"] {
+    display: block;
+  }
+
+  .film:last-child:after {
+    content: '';
+  }
+
+  .film:after {
+    content: ',';
+  }
+}
