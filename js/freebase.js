@@ -90,7 +90,7 @@ fbmap.initMap = function(lat, lng) {
   // Listen for changes on which category to query.  TODO(jlivni): Consider
   // multiple categories.
   $('#category').change(function() {
-    $('.card').hide();
+    //$('.card').hide();
     fbmap.category = $(this).val();
     fbmap.getFreebaseLocations();
   });
@@ -131,7 +131,7 @@ fbmap.clearMap = function() {
     marker.setMap(null);
   });
   fbmap.markers = [];
-  $('.card').hide();
+  //$('.card').hide();
 };
 
 fbmap.iconAnchorPoints = {

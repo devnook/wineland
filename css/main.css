@@ -19,101 +19,6 @@
   bottom: 0;
 }
 /* Reset */
-html,
-body,
-a,
-div,
-span,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-abbr,
-address,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-samp,
-small,
-strong,
-sub,
-sup,
-var,
-b,
-i,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-input,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section,
-menu,
-time,
-mark,
-audio,
-video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  vertical-align: baseline;
-  outline: 0;
-  background: transparent;
-}
-card,
-container,
-feedback,
-front,
-back,
-filters,
-logo,
-cardwrap,
-main,
-a.action,
-span.url,
-span.snippet,
-a.info {
-  display: block;
-}
-left,
-right {
-  display: inline-block;
-}
 /* Fonts */
 /* Styles */
 body {
@@ -122,45 +27,40 @@ body {
   color: #878787;
   background: #F5F5F5;
 }
-cardwrap {
-  width: 370px;
-  padding: 0.2em;
+.content {
   position: absolute;
-  right: 0;
+  top: 0;
+  left: 0;
+  height: 100%;
   z-index: 99;
 }
-.card {
-  background: #fff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-  display: block;
-  margin: 1em;
-  padding: 10px;
+.article {
+  z-index: 99;
+  -webkit-transition: height 0.3s ease, margin 0.3s ease;
+  -moz-transition: height 0.3s ease, margin 0.3s ease;
+  -o-transition: height 0.3s ease, margin 0.3s ease;
+  transition: height 0.3s ease, margin 0.3s ease;
+  margin-left: -370px;
+  background: rgba(255, 255, 255, 0.7);
+  height: 100%;
+  width: 370px;
 }
-.card left,
-.card right {
-  display: inline-block;
-  vertical-align: top;
-  max-width: 60%;
+.article.open {
+  margin-left: 0;
 }
-.card left img,
-.card right img {
-  margin-bottom: -3px;
-  padding: -10px;
-  margin: -10px;
-  margin-bottom: -14px;
+#sidebar {
+  z-index: 99;
+  -webkit-transition: width 0.3s ease, margin 0.3s ease;
+  -moz-transition: width 0.3s ease, margin 0.3s ease;
+  -o-transition: width 0.3s ease, margin 0.3s ease;
+  transition: width 0.3s ease, margin 0.3s ease;
+  margin-left: -370px;
+  background: rgba(255, 255, 255, 0.7);
+  height: 100%;
+  width: 370px;
 }
-.card left h1,
-.card right h1,
-.card left p,
-.card right p {
-  padding: 5px;
-}
-.card left p:first-child,
-.card right p:first-child {
-  font-size: 1.4em;
-}
-.card right {
-  margin-left: 10px;
+#sidebar.open {
+  margin-left: 0;
 }
 .card h1 {
   font-size: 24px;
@@ -203,6 +103,28 @@ cardwrap {
 .card .film:after {
   content: ',';
 }
+.row-fluid div {
+  height: 200px;
+  -webkit-transition: width 0.3s ease, margin 0.3s ease;
+  -moz-transition: width 0.3s ease, margin 0.3s ease;
+  -o-transition: width 0.3s ease, margin 0.3s ease;
+  transition: width 0.3s ease, margin 0.3s ease;
+}
+.row-fluid .span0 {
+  width: 0%;
+}
+#col1 {
+  background-color: #A6BFBA;
+}
+#col2 {
+  background-color: #DE4124;
+}
+#trig {
+  margin: 50px;
+}
+.row-fluid .span0 + [class*="span"] {
+  margin-left: 0;
+}
 html,
 body,
 #map-canvas {
@@ -226,4 +148,27 @@ select {
   bottom: 0;
   background-color: white;
   z-index: 99;
+}
+.row div {
+  height: 200px;
+  -webkit-transition: width 0.3s ease, margin 0.3s ease;
+  -moz-transition: width 0.3s ease, margin 0.3s ease;
+  -o-transition: width 0.3s ease, margin 0.3s ease;
+  transition: width 0.3s ease, margin 0.3s ease;
+}
+#col1 {
+  background-color: #A6BFBA;
+}
+#col2 {
+  background-color: #DE4124;
+}
+#trig {
+  margin: 50px;
+}
+.container {
+  width: 100%;
+}
+.col-md-0.col-md-1 {
+  width: 0;
+  padding: 0;
 }
