@@ -37,13 +37,15 @@ cards.MAPPING_DIRECTIVE = {
  * @const
  */
 cards.ARTICLE_MAPPING_DIRECTIVE = {
-  '.action': 'actionText',
-  '.action@href': 'actionUrl',
+  //'.action': 'actionText',
+  //'.action@href': 'actionUrl',
   '.description': 'description',
   //'.image@src': 'image',
   '.crop@style': 'image',
   '.notableFor': 'notableFor',
-  '.name': 'name'
+  '.name': 'name',
+  '.grapeVariety': 'grapeVariety',
+  '.color': 'color'
 };
 
 
@@ -112,6 +114,14 @@ cards.displayArticle = function(entity) {
     cardContent['actionUrl'] = entity.property['/common/topic/official_website']
         .values[0].value;
     cardContent['actionText'] = 'Visit official website';
+  }
+  if (entity.property['/wine/wine/grape_variety']) {
+    cardContent['grapeVariety'] = entity.property['/wine/wine/grape_variety']
+        .values[0].property['/wine/grape_variety_composition/grape_variety'].values[0].text;
+  }
+  if (entity.property['/wine/wine/color']) {
+    cardContent['color'] = entity.property['/wine/wine/color']
+        .values[0].text;
   }
   $('div.article').render(cardContent, cards.ARTICLE_MAPPING_DIRECTIVE);
   $('.article-wrapper').addClass('open');
