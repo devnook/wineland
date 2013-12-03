@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple markers</title>
+    <link rel="stylesheet" type="text/css"
+        href="http://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://beebole.com/pure/wp-content/themes/BeeBole-pure/libs/pure.js"></script>
+
+  <style type="text/css">
+  .row div {
+    height: 200px;
+    -webkit-transition: width 0.3s ease, margin 0.3s ease;
+    -moz-transition: width 0.3s ease, margin 0.3s ease;
+    -o-transition: width 0.3s ease, margin 0.3s ease;
+    transition: width 0.3s ease, margin 0.3s ease;
+}
+
+
+#col1 {
+    background-color: #A6BFBA;
+}
+
+#col2 {
+    background-color: #DE4124;
+}
+
+#trig {
+    margin: 50px;
+}
+
+.container {
+  width: 100%;
+}
+
+.col-md-0.col-md-1 {
+  width: 0;
+  padding: 0;
+}
+
+
+  </style>
+
+
+  </head>
+  <body>
+
+<div class="container content">
+<div class="row">
+    <div id="col2" class="col-md-0 col-md-1"></div>
+    <div id="col1" class="col-md-3">
+        <a id="trig" class="btn btn-inverse">Reflow Me</a>
+    </div>
+
+  </div>
+</div>
+<script type="text/javascript">
+  $('#trig').on('click', function () {
+    //$('#col1').toggleClass('col-md-11 col-md-3');
+    $('#col2').toggleClass('col-md-1 col-md-9');
+});
+</script>
+  </body>
+</html>
