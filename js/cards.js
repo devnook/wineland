@@ -158,7 +158,7 @@ cards.displayCard = function(entity) {
     var regionMid = entity.id.substring(1).replace('/', ':');
     for (var i = 0, wine; wine = entity.property['/wine/wine_sub_region/wines'].values[i]; i++) {
       var wineMid = wine.id.substring(1).replace('/', ':');
-      cardContent['wines'].push({ 'text': wine.text, 'url': '/#/region/' + regionMid + '/wine/' + wineMid });
+      cardContent['wines'].push({ 'text': wine.text, 'url': '#/region/' + regionMid + '/wine/' + wineMid });
     }
     //cardContent['featuredInFilmsDisplay'] = true;
   }
