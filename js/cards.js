@@ -40,7 +40,8 @@ cards.ARTICLE_MAPPING_DIRECTIVE = {
   '.action': 'actionText',
   '.action@href': 'actionUrl',
   '.description': 'description',
-  '.image@src': 'image',
+  //'.image@src': 'image',
+  '.crop@style': 'image',
   '.notableFor': 'notableFor',
   '.name': 'name'
 };
@@ -104,8 +105,8 @@ cards.displayArticle = function(entity) {
         .values[0].text;
   }
   if (entity.property['/common/topic/image']) {
-    cardContent['image'] = 'https://www.googleapis.com/freebase/v1/image/' +
-        entity.property['/common/topic/image'].values[0].id + '?maxwidth=260';
+    cardContent['image'] = 'background-image:url(https://www.googleapis.com/freebase/v1/image/' +
+        entity.property['/common/topic/image'].values[0].id + '?maxwidth=370)';
   }
   if (entity.property['/common/topic/official_website']) {
     cardContent['actionUrl'] = entity.property['/common/topic/official_website']

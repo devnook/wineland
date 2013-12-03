@@ -38,6 +38,53 @@ body {
 #sidebar {
   box-sizing: border-box;
   top: 0;
+  height: 100%;
+  -webkit-transition: height 0.3s ease, overflow 0.3s ease;
+  -moz-transition: height 0.3s ease, overflow 0.3s ease;
+  -o-transition: height 0.3s ease, overflow 0.3s ease;
+  transition: height 0.3s ease, overflow 0.3s ease;
+}
+.article-wrapper h1,
+#sidebar h1 {
+  font-size: 2em;
+}
+.article-wrapper h2,
+#sidebar h2 {
+  font-size: 1.3em;
+}
+.article-wrapper img + h2,
+#sidebar img + h2 {
+  display: inline-block;
+  padding: 1em;
+}
+.article-wrapper section,
+#sidebar section {
+  padding: 1em;
+}
+.article-wrapper .article,
+#sidebar .article {
+  height: 100%;
+}
+.article-wrapper .crop,
+#sidebar .crop {
+  height: 300px;
+  background-image: url('https://www.googleapis.com/freebase/v1/image//m/03_dz04?maxwidth=370');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 100%;
+}
+.article-wrapper .crop:hover,
+#sidebar .crop:hover {
+  overflow: hidden;
+  height: 100%;
+  -webkit-transition: height 0.5s ease;
+  -moz-transition: height 0.5s ease;
+  -o-transition: height 0.5s ease;
+  transition: height 0.5s ease;
+}
+.article-wrapper .image,
+#sidebar .image {
+  width: 100%;
 }
 .article-wrapper {
   z-index: 99;
@@ -55,7 +102,11 @@ body {
 }
 .article-wrapper.open {
   height: 100%;
-  padding-top: 58px;
+  padding-top: 48px;
+}
+left,
+right {
+  display: inline-block;
 }
 #sidebar {
   z-index: 99;
@@ -76,11 +127,6 @@ body {
 }
 #sidebar .card {
   padding: 1em;
-}
-.card h1 {
-  font-size: 24px;
-  color: #707070;
-  font-weight: 200;
 }
 .card .action {
   border-top: 1px solid #DDDDDD;
@@ -155,4 +201,7 @@ select {
   height: 24px;
   overflow: hidden;
   border: 1px solid #ccc;
+}
+.article .container {
+  width: 100%;
 }

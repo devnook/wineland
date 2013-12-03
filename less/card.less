@@ -29,6 +29,53 @@ body {
   box-sizing: border-box;
 
   top: 0;
+  height: 100%;
+
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 1.3em;
+  }
+
+  img+h2 {
+    display:inline-block;
+    padding: 1em;
+  }
+
+  section {
+    padding: 1em;
+  }
+
+  .article {
+  height: 100%;
+  }
+
+  .crop {
+    height: 300px;
+    background-image: url('https://www.googleapis.com/freebase/v1/image//m/03_dz04?maxwidth=370');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 100%;
+  }
+
+  .crop:hover {
+    overflow: hidden;
+    height: 100%;
+     -webkit-transition: height 0.5s ease;
+    -moz-transition: height 0.5s ease;
+    -o-transition: height 0.5s ease;
+    transition: height 0.5s ease;
+  }
+   -webkit-transition: height 0.3s ease, overflow 0.3s ease;
+    -moz-transition: height 0.3s ease, overflow 0.3s ease;
+    -o-transition: height 0.3s ease, overflow 0.3s ease;
+    transition: height 0.3s ease, overflow 0.3s ease;
+
+  .image {
+    width: 100%;
+  }
 }
 
 .article-wrapper {
@@ -48,8 +95,13 @@ body {
 
   &.open {
     height: 100%;
-    padding-top: 58px;
+    padding-top: 48px;
   }
+}
+
+left,
+right {
+  display: inline-block;
 }
 
 #sidebar {
@@ -82,11 +134,7 @@ right: 0;
 
 .card {
 
-  h1 {
-    font-size: 24px;
-    color: #707070;
-    font-weight: 200;
-  }
+
 
   .action {
     border-top: 1px solid #DDDDDD;
