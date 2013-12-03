@@ -74,10 +74,21 @@ fbmap.initMap = function(lat, lng) {
     zoom: 3,
     center: new google.maps.LatLng(lat, lng),
     mapTypeId: google.maps.MapTypeId.ROADMAP,
-    styles: styles
+    styles: styles,
+    zoomControlOptions: {
+        //style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+        position: google.maps.ControlPosition.LEFT_CENTER
+    },
+    panControl: false,
+    mapTypeControlOptions: {
+      position: google.maps.ControlPosition.BOTTOM_LEFT
+
+    }
   };
 
   fbmap.currentLatLng = mapOptions.center;
+  console.log($('.navbar').height())
+  //$('#map-canvas').css('height',$(window).height() - $('.navbar').height() + 30 + 'px')
 
   fbmap.map = new google.maps.Map($('#map-canvas')[0], mapOptions);
   // Query for new features on a click.  TODO(jlivni): Maybe query on a pan.
@@ -178,10 +189,10 @@ fbmap.createMarkers = function(response) {
     bounds.extend(latLng);
     google.maps.event.addListener(marker, 'click', function() {
       if (!cards.isCardDisplayed(result.mid)) {
-        var params = {
-          filter: '/wine/wine_sub_region/wines'
-        };
-        $.getJSON(fbmap.topicUrl + result.mid + '?filter=all', cards.displayCard);
+        var mid = result.mid.substring(1).replace('/', ':');
+        window.location.hash = '#/region/' + mid;
+        //$(window).trigger( "hashchange" );
+        //$.getJSON(fbmap.topicUrl + result.mid + '?filter=all', cards.displayCard);
       }
     });
   });

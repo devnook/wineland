@@ -16,7 +16,7 @@
   z-index: 99;
   width: 100%;
   position: absolute;
-  bottom: 0;
+  bottom: 10px;
 }
 /* Reset */
 /* Fonts */
@@ -29,24 +29,33 @@ body {
 }
 .content {
   position: absolute;
-  top: 0;
+  top: 50px;
   left: 0;
   height: 100%;
   z-index: 99;
 }
-.article {
+.article-wrapper,
+#sidebar {
+  box-sizing: border-box;
+  top: 0;
+}
+.article-wrapper {
   z-index: 99;
   -webkit-transition: height 0.3s ease, margin 0.3s ease;
   -moz-transition: height 0.3s ease, margin 0.3s ease;
   -o-transition: height 0.3s ease, margin 0.3s ease;
   transition: height 0.3s ease, margin 0.3s ease;
-  margin-left: -370px;
-  background: rgba(255, 255, 255, 0.7);
-  height: 100%;
+  background: rgba(255, 255, 255, 0.82);
+  height: 0;
   width: 370px;
+  position: absolute;
+  top: 0;
+  right: 370px;
+  overflow: hidden;
 }
-.article.open {
-  margin-left: 0;
+.article-wrapper.open {
+  height: 100%;
+  padding-top: 58px;
 }
 #sidebar {
   z-index: 99;
@@ -54,13 +63,19 @@ body {
   -moz-transition: width 0.3s ease, margin 0.3s ease;
   -o-transition: width 0.3s ease, margin 0.3s ease;
   transition: width 0.3s ease, margin 0.3s ease;
-  margin-left: -370px;
+  margin-right: -370px;
   background: rgba(255, 255, 255, 0.7);
   height: 100%;
   width: 370px;
+  position: absolute;
+  right: 0;
 }
 #sidebar.open {
-  margin-left: 0;
+  margin-right: 0;
+  padding-top: 58px;
+}
+#sidebar .card {
+  padding: 1em;
 }
 .card h1 {
   font-size: 24px;
@@ -140,35 +155,4 @@ select {
   height: 24px;
   overflow: hidden;
   border: 1px solid #ccc;
-}
-#debug {
-  position: absolute;
-  width: 300px;
-  left: 0;
-  bottom: 0;
-  background-color: white;
-  z-index: 99;
-}
-.row div {
-  height: 200px;
-  -webkit-transition: width 0.3s ease, margin 0.3s ease;
-  -moz-transition: width 0.3s ease, margin 0.3s ease;
-  -o-transition: width 0.3s ease, margin 0.3s ease;
-  transition: width 0.3s ease, margin 0.3s ease;
-}
-#col1 {
-  background-color: #A6BFBA;
-}
-#col2 {
-  background-color: #DE4124;
-}
-#trig {
-  margin: 50px;
-}
-.container {
-  width: 100%;
-}
-.col-md-0.col-md-1 {
-  width: 0;
-  padding: 0;
 }

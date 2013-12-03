@@ -55,18 +55,34 @@ cards.isCardDisplayed = function(mid) {
   return !!$('.card[data-mid="' + mid + '"]').length;
 };
 
+cards.pathRegex = /#\/region\/m:(\w*)(\/wine\/m:)?(\w*)?/;
+
 //TODO(ewag): Change to plugin for cross-browser.
-$(window).bind( 'hashchange', function(e) {
-  var mid = '/m/' + location.hash.split('/').pop();
-  console.log(mid)
-  $.getJSON(fbmap.topicUrl + mid + '?filter=all', cards.displayArticle);
-
- });
-
-$('#trig').on('click', function () {
-    //$('#col1').toggleClass('col-md-11 col-md-3');
-    $('#col2').toggleClass('col-md-1 col-md-9');
+$(window).bind( 'hashchange', function() {
+  cards.loadState()
 });
+
+
+//TODO(ewag): Change to plugin for cross-browser.
+cards.loadState = function() {
+  var state = cards.pathRegex.exec(location.hash);
+  if (state) {
+    var regionMid = 'm/' + state[1];
+    console.log(regionMid)
+    if ($('.card').attr('data-mid') !=  regionMid) {
+      console.log('send')
+      $('.article-wrapper').removeClass('open');
+       $.getJSON(fbmap.topicUrl + regionMid + '?filter=all', cards.displayCard);
+    }
+    if (state[3]) {
+      var wineMid = 'm/' + state[3];
+      if ($('.article').attr('data-mid') != wineMid) {
+         $.getJSON(fbmap.topicUrl + wineMid + '?filter=all', cards.displayArticle);
+      }
+    }
+  }
+ };
+
 
 
 /**
@@ -96,8 +112,8 @@ cards.displayArticle = function(entity) {
         .values[0].value;
     cardContent['actionText'] = 'Visit official website';
   }
-  $('div.article').render(cardContent, cards.ARTICLE_MAPPING_DIRECTIVE)
-    .addClass('open');
+  $('div.article').render(cardContent, cards.ARTICLE_MAPPING_DIRECTIVE);
+  $('.article-wrapper').addClass('open');
 
 };
 
@@ -106,13 +122,14 @@ cards.displayArticle = function(entity) {
  * @param {Object} entity Freebase topic/entity.
  */
 cards.displayCard = function(entity) {
+
   console.log(entity)
   //$('.card').addClass('visible');
 
 
 
 
-  $('.card').attr('data-mid', entity.id);
+  $('.card').attr('data-mid', entity.id.substring(1));
   var cardContent = {
     'name': entity.property['/type/object/name'].values[0].value,
     'description': entity.property['/common/topic/description'].values[0].text,
@@ -137,8 +154,10 @@ cards.displayCard = function(entity) {
   }
   if (entity.property['/wine/wine_sub_region/wines']) {
     cardContent['wines'] = [];
+    var regionMid = entity.id.substring(1).replace('/', ':');
     for (var i = 0, wine; wine = entity.property['/wine/wine_sub_region/wines'].values[i]; i++) {
-      cardContent['wines'].push({ 'text': wine.text, 'url': '/#/wine' + wine.id });
+      var wineMid = wine.id.substring(1).replace('/', ':');
+      cardContent['wines'].push({ 'text': wine.text, 'url': '/#/region/' + regionMid + '/wine/' + wineMid });
     }
     //cardContent['featuredInFilmsDisplay'] = true;
   }
@@ -148,3 +167,5 @@ cards.displayCard = function(entity) {
 
 
 };
+
+cards.loadState();

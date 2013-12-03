@@ -16,27 +16,39 @@ body {
 
 .content {
   position: absolute;
-  top: 0;
+  top: 50px;
   left: 0;
   height: 100%;
   z-index: 99;
 
 }
 
-.article {
+.article-wrapper,
+#sidebar {
+
+  box-sizing: border-box;
+
+  top: 0;
+}
+
+.article-wrapper {
   z-index: 99;
   //overflow: hidden;
     -webkit-transition: height 0.3s ease, margin 0.3s ease;
     -moz-transition: height 0.3s ease, margin 0.3s ease;
     -o-transition: height 0.3s ease, margin 0.3s ease;
     transition: height 0.3s ease, margin 0.3s ease;
-  margin-left: -370px;
-  background: rgba(255, 255, 255, 0.7);
-  height: 100%;
+  background: rgba(255, 255, 255, 0.82);
+  height: 0;
   width: 370px;
+  position: absolute;
+  top: 0;
+  right: 370px;
+  overflow:hidden;
 
   &.open {
-    margin-left: 0;
+    height: 100%;
+    padding-top: 58px;
   }
 }
 
@@ -47,13 +59,20 @@ body {
     -moz-transition: width 0.3s ease, margin 0.3s ease;
     -o-transition: width 0.3s ease, margin 0.3s ease;
     transition: width 0.3s ease, margin 0.3s ease;
-  margin-left: -370px;
+  margin-right: -370px;
   background: rgba(255, 255, 255, 0.7);
   height: 100%;
   width: 370px;
+  position: absolute;
+right: 0;
 
   &.open {
-    margin-left: 0;
+    margin-right: 0;
+    padding-top: 58px;
+  }
+
+  .card {
+    padding: 1em;
   }
 }
 
