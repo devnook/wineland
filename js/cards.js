@@ -133,10 +133,7 @@ cards.displayArticle = function(entity) {
   if (!$('.article-wrapper').hasClass('open')) {
     $('.article-wrapper').addClass('open');
   }
-  console.log($('.crop img'))
-  console.log($('.crop img').height())
-  var minSize = $('.crop img').height() ? $('.crop img').height() : 30;
-  $('.crop').height(Math.min(300, minSize));
+  $('.crop').height(300);
 
   $('.crop').hover(function() {
     $(this).height($('.crop img').height());
