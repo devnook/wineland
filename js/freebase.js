@@ -119,15 +119,74 @@ fbmap.initMap = function(lat, lng) {
  */
 fbmap.getFreebaseLocations = function() {
   var latLng = fbmap.currentLatLng;
-  // Create the Freebase API query.
-  var loc = ' lon:' + latLng.lng() + ' lat:' + latLng.lat();
-  loc = '(all type:' + fbmap.category + ' (within radius:500000000ft' + loc + '))';
-  var params = {
-    filter: loc,
-    output: '(' + fbmap.locString + ')',
-    limit: 200
-  };
-  $.getJSON(fbmap.searchUrl, params, fbmap.createMarkers);
+
+  var types = [
+    '/wine/wine_region',
+    '/wine/wine_sub_region',
+    '/wine/vineyard'
+  ];
+
+  for (var i = 0, type; type = types[i]; i++) {
+    var loc = ' lon:' + latLng.lng() + ' lat:' + latLng.lat();
+    var filter = '(all type:' + type + ' (within radius:500000000ft' + loc + '))';
+    var params = {
+      filter: filter,
+      output: '(/location/location/geolocation)',
+      limit: 200
+    };
+    console.log(type)
+    var callback = function(type) {
+      return function(response) {
+        console.log(type)
+        console.log(response)
+        //fbmap.clearMap();
+        if (!response.result) {
+          console.log('no results');
+        }
+        var bounds = new google.maps.LatLngBounds();
+        $.each(response.result, function(i, result) {
+          var loc = result.output[fbmap.locString][fbmap.locString][0];
+          var latLng = new google.maps.LatLng(loc.latitude, loc.longitude);
+
+          var icon = new google.maps.MarkerImage(
+            "images/sprites.png",
+            new google.maps.Size(25, 25),
+            fbmap.iconAnchorPoints[type]);
+
+          var marker = new google.maps.Marker({
+            position: latLng,
+            map: fbmap.map,
+            title: result.name,
+            icon: icon
+          });
+
+
+          fbmap.markers.push(marker);
+          // Keep track of the bounding box of all results.
+          bounds.extend(latLng);
+          google.maps.event.addListener(marker, 'click', function() {
+            if (!cards.isCardDisplayed(result.mid)) {
+              var mid = result.mid.substring(1).replace('/', ':');
+              window.location.hash = '#/region/' + mid;
+              //$(window).trigger( "hashchange" );
+              //$.getJSON(fbmap.topicUrl + result.mid + '?filter=all', cards.displayCard);
+            }
+          });
+        });
+        if (response.result.length > 1) {
+          // TODO(jlivni): Maybe only fit to bounds if the bounds are bigger than
+          // current bounds.
+          //fbmap.map.fitBounds(bounds);
+        }
+      };
+
+
+
+
+    }
+
+    $.getJSON(fbmap.searchUrl, params, callback(type));
+  }
 
   //https://www.googleapis.com/freebase/v1/search?filter=(all+type%3A%2Fwine%2Fwine_sub_region+(within+radius%3A5000000ft+lon%3A-0.14219419999994898+lat%3A51.536543599999995))&output=(%2Flocation%2Flocation%2Fgeolocation)
 };
@@ -146,13 +205,9 @@ fbmap.clearMap = function() {
 };
 
 fbmap.iconAnchorPoints = {
-  '/symbols/namesake': new google.maps.Point(108, 240),
-  '/film/film_location': new google.maps.Point(108, 312),
-  '/visual_art/artwork': new google.maps.Point(216, 168),
-  '/architecture/structure' : new google.maps.Point(216, 144),
-  '/travel/tourist_attraction': new google.maps.Point(54, 504),
-  '/sports/sports_facility': new google.maps.Point(162, 192),
-  '/wine/wine_sub_region': new google.maps.Point(0, 48),
+  '/wine/vineyard': new google.maps.Point(21, 0),
+  '/wine/wine_region': new google.maps.Point(0, 0),
+  '/wine/wine_sub_region': new google.maps.Point(42, 0),
 }
 
 
@@ -160,8 +215,10 @@ fbmap.iconAnchorPoints = {
  * Creates the markers and click events for freebase locations.
  * @param {object} response Freebase search response.
  */
-fbmap.createMarkers = function(response) {
-  fbmap.clearMap();
+fbmap.createMarkers = function(response, type) {
+  console.log(type)
+  console.log(response)
+  //fbmap.clearMap();
   if (!response.result) {
     console.log('no results');
   }
@@ -171,10 +228,12 @@ fbmap.createMarkers = function(response) {
     var loc = result.output[fbmap.locString][fbmap.locString][0];
     var latLng = new google.maps.LatLng(loc.latitude, loc.longitude);
     // TODO(jivni): Use custom icons depending on the category.
+
+    console.log
     var icon = new google.maps.MarkerImage(
-      "images/maki-sprite.png",
-      new google.maps.Size(24, 24),
-      fbmap.iconAnchorPoints[fbmap.category]);
+      "images/sprites.png",
+      new google.maps.Size(25, 25),
+      fbmap.iconAnchorPoints[type]);
 
     var marker = new google.maps.Marker({
       position: latLng,
